@@ -2,4 +2,11 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
+if vim.g.vscode then
+	-- VSCode Neovim
+	require "custom.plugins.vscode"
+else
+	-- Ordinary Neovim
+end
+--Test
 return {}

@@ -86,7 +86,7 @@ P.S. You can delete this when you're done too. It's your config now! :)
 
 if vim.g.vscode then
   -- VSCode Neovim
-  require "lua.custom.vscode"
+  require "custom.vscode"
   return
 end
 -- Set <space> as the leader key

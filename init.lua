@@ -84,6 +84,13 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
+-- Sync clipboard between OS and Neovim.
+--  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Remove this option if you want your OS clipboard to remain independent.
+--  See `:help 'clipboard'`
+vim.schedule(function()
+  vim.o.clipboard = 'unnamedplus'
+end)
 if vim.g.vscode then
   -- VSCode Neovim
   require 'custom.vscode'
@@ -115,14 +122,6 @@ if not vim.g.vscode then
 
   -- Don't show the mode, since it's already in the status line
   vim.o.showmode = false
-
-  -- Sync clipboard between OS and Neovim.
-  --  Schedule the setting after `UiEnter` because it can increase startup-time.
-  --  Remove this option if you want your OS clipboard to remain independent.
-  --  See `:help 'clipboard'`
-  vim.schedule(function()
-    vim.o.clipboard = 'unnamedplus'
-  end)
 
   -- Enable break indent
   vim.o.breakindent = true
@@ -172,6 +171,7 @@ if not vim.g.vscode then
   -- See `:help 'confirm'`
   vim.o.confirm = true
 
+  vim.opt.conceallevel = 2 -- Hide * markup for bold and italic
   -- [[ Basic Keymaps ]]
   --  See `:help vim.keymap.set()`
 
@@ -189,12 +189,6 @@ if not vim.g.vscode then
   -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
   -- or just use <C-\><C-n> to exit terminal mode
   vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
-  -- TIP: Disable arrow keys in normal mode
-  -- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-  -- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-  -- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-  -- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
   -- Keybinds to make split navigation easier.
   --  Use CTRL+<hjkl> to switch between windows
@@ -897,9 +891,9 @@ if not vim.g.vscode then
           },
         }
 
-        -- Load the colorscheme here.
-        -- Like many other themes, this one has different styles, and you could load
-        -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
+        -- --     -- Load the colorscheme here.
+        -- --     -- Like many other themes, this one has different styles, and you could load
+        -- --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
         vim.cmd.colorscheme 'tokyonight-night'
       end,
     },
@@ -989,6 +983,14 @@ if not vim.g.vscode then
     -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
     --    This is the easiest way to modularize your config.
     --
+    {
+      dir = vim.fn.stdpath('config') .. '/lua/custom/jcolors.nvim', -- local path
+      lazy = false,
+      priority = 1000,
+      config = function()
+        vim.cmd 'colorscheme jcolors'
+      end,
+    },
     --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
     -- { import = 'custom.plugins' },
     --

@@ -482,7 +482,16 @@ if not vim.g.vscode then
         -- Automatically install LSPs and related tools to stdpath for Neovim
         -- Mason must be loaded before its dependents so we need to set it up here.
         -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-        { 'mason-org/mason.nvim', opts = {} },
+        {
+          'mason-org/mason.nvim',
+          opts = {
+            registries = {
+              'github:mason-org/mason-registry',
+
+              'github:Crashdummyy/mason-registry',
+            },
+          },
+        },
         'mason-org/mason-lspconfig.nvim',
         'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -572,6 +581,9 @@ if not vim.g.vscode then
             --  the definition of its *type*, not where it was *defined*.
             map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
 
+            -- made by me
+
+            map('gh', vim.lsp.buf.hover, '[G]oto [H]over')
             -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
             ---@param client vim.lsp.Client
             ---@param method vim.lsp.protocol.Method
@@ -681,8 +693,7 @@ if not vim.g.vscode then
           --    https://github.com/pmizio/typescript-tools.nvim
           --
           -- But for many setups, the LSP (`ts_ls`) will work just fine
-          -- ts_ls = {},
-          --
+          ts_ls = {},
 
           lua_ls = {
             -- cmd = { ... },
@@ -716,6 +727,7 @@ if not vim.g.vscode then
         local ensure_installed = vim.tbl_keys(servers or {})
         vim.list_extend(ensure_installed, {
           'stylua', -- Used to format Lua code
+          'roslyn', -- C# LSP (from Crashdummyy registry, used by roslyn.nvim)
         })
         require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -951,9 +963,9 @@ if not vim.g.vscode then
       build = ':TSUpdate',
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
       opts = {
-        ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'cs', 'ts' },
+        ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'c_sharp', 'typescript' },
         -- Autoinstall languages that are not installed
-        auto_install = true,
+        -- auto_install = true,
         highlight = {
           enable = true,
           -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
@@ -970,10 +982,6 @@ if not vim.g.vscode then
       --    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     },
-
-    -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
-    -- init.lua. If you want these files, they are in the repository, so you can just download them and
-    -- place them in the correct locations.
 
     -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
     --

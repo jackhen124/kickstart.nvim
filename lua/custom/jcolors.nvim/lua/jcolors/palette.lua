@@ -21,6 +21,8 @@ return {
   gutter_fg = '#78808f',
   nontext = '#d2d6dc',
 
+  light_orange = '#f9e2af',
+
   -- element approach
 
   bg = '#0f1c2e',
@@ -33,7 +35,7 @@ return {
   -- Syntax
   keyword = '#f28fad',
   Function = '#89b4fa',
-  string = '#f9e2af',
+  string = '#f0bc78',
   constant = '#cdd6f4',
   type = '#cba6f7',
   number = '#fab387',

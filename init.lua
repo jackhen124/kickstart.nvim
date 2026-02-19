@@ -876,6 +876,14 @@ if not vim.g.vscode then
       },
     },
 
+    {
+      dir = vim.fn.stdpath 'config' .. '/lua/custom/jcolors.nvim', -- local path
+      lazy = false,
+      priority = 1001,
+      config = function()
+        vim.cmd 'colorscheme jcolors'
+      end,
+    },
     { -- You can easily change to a different colorscheme.
       -- Change the name of the colorscheme plugin below, and then
       -- change the command in the config to whatever the name of that colorscheme is.
@@ -894,7 +902,7 @@ if not vim.g.vscode then
         -- --     -- Load the colorscheme here.
         -- --     -- Like many other themes, this one has different styles, and you could load
         -- --     -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-        vim.cmd.colorscheme 'tokyonight-night'
+        -- vim.cmd.colorscheme 'tokyonight-night'
       end,
     },
 
@@ -943,7 +951,7 @@ if not vim.g.vscode then
       build = ':TSUpdate',
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
       opts = {
-        ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+        ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'cs', 'ts' },
         -- Autoinstall languages that are not installed
         auto_install = true,
         highlight = {
@@ -983,14 +991,6 @@ if not vim.g.vscode then
     -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
     --    This is the easiest way to modularize your config.
     --
-    {
-      dir = vim.fn.stdpath('config') .. '/lua/custom/jcolors.nvim', -- local path
-      lazy = false,
-      priority = 1000,
-      config = function()
-        vim.cmd 'colorscheme jcolors'
-      end,
-    },
     --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
     -- { import = 'custom.plugins' },
     --

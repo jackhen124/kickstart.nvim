@@ -50,6 +50,8 @@ keymap({ 'n', 'v' }, '<leader>t', "<cmd>lua require('vscode').action('workbench.
 keymap({ 'n', 'v' }, '<leader>i', "<cmd>lua require('vscode').action('github.copilot.openChatPanel')<CR>")
 
 -- navigation
+keymap({ 'n', 'v' }, '<leader>gD', "<cmd>lua require('vscode').action('editor.action.goToDeclaration')<CR>")
+keymap({ 'n', 'v' }, '<leader>gd', "<cmd>lua require('vscode').action('editor.action.goToDefinition')<CR>")
 keymap({ 'n', 'v' }, '<leader>gr', "<cmd>lua require('vscode').action('editor.action.goToReferences')<CR>")
 keymap({ 'n', 'v' }, '<leader>gi', "<cmd>lua require('vscode').action('editor.action.goToImplementation')<CR>")
 keymap({ 'n', 'v' }, '<leader>gt', "<cmd>lua require('vscode').action('editor.action.goToTypeDefinition')<CR>")

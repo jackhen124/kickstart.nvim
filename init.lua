@@ -358,9 +358,6 @@ if not vim.g.vscode then
     --
     -- Use the `dependencies` key to specify the dependencies of a particular plugin
 
-    -- { import = 'plugins' },
-    -- require 'plugins.lsp.lsp',
-
     -- Autocompletion
     {
       'saghen/blink.cmp',

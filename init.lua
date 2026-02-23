@@ -268,7 +268,7 @@ if not vim.g.vscode then
     require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
     { import = 'plugins' },
-    { import = 'plugins.colorsheme' },
+    { import = 'plugins.colorscheme' },
     { import = 'plugins.git' },
     { import = 'plugins.lsp' },
     -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`

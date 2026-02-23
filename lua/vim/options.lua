@@ -92,3 +92,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+
+vim.opt.laststatus = 2
+vim.opt.statusline = vim.opt.statusline + '%F'

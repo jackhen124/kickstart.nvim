@@ -232,6 +232,9 @@ return {
           -- But for many setups, the LSP (`ts_ls`) will work just fine
           ts_ls = {},
 
+        html = {},
+        cssls = {},
+        angularls = {},
           lua_ls = {
             -- cmd = { ... },
             -- filetypes = { ... },
@@ -291,7 +294,7 @@ return {
       cmd = { 'ConformInfo' },
       keys = {
         {
-          '<leader>f',
+          '<leader>F',
           function()
             require('conform').format { async = true, lsp_format = 'fallback' }
           end,

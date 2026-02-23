@@ -13,7 +13,7 @@ return {
       -- },
       {
         name = 'work',
-        path = 'C:/Users/Jack.Hensley/OneDrive - KH/Documents/notes/kh-obsidian-vault',
+        path = 'C:/Users/Jack.Hensley/OneDrive - KH/Documents/notes/workvault',
       },
     },
   },

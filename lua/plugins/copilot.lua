@@ -1,6 +1,10 @@
 return {
   {
     'github/copilot.vim',
+    config = function()
+      vim.api.nvim_set_keymap('i', '<C-y>', 'copilot#Accept("<CR>")',
+        { expr = true, silent = true, noremap = true, desc = 'Copilot Accept Suggestion' })
+    end,
   },
   {
     'CopilotC-Nvim/CopilotChat.nvim',

@@ -35,7 +35,7 @@ keymap('n', '<Esc>', '<Esc>:noh<CR>', opts)
 -- Defined by ME
 
 -- File management
-keymap({ 'n', 'v' }, '<leader><leader>', "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
+keymap({ 'n', 'v' }, '<leader>ff', "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
 keymap({ 'n', 'v' }, '<leader><Tab>', "<cmd>lua require('vscode').action('workbench.action.openPreviousRecentlyUsedEditor')<CR>")
 keymap({ 'n', 'v' }, '<leader>r', "<cmd>lua require('vscode').action('workbench.action.openRecent')<CR>")
 keymap({ 'n', 'v' }, '<leader>w', "<cmd>lua require('vscode').action('workbench.action.closeActiveEditor')<CR>")

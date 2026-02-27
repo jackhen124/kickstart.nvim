@@ -3,6 +3,7 @@
 hi this comment was added on friday at 1:53pm
 from chezmoi edit
 
+another edit, after chezmoi external tracking
 ## Introduction
 
 A starting point for Neovim that is:

@@ -150,8 +150,10 @@ if not vim.g.vscode then
           -- <c-k>: Toggle signature help
           --
           -- See :h blink-cmp-config-keymap for defining your own keymap
-          preset = 'default',
+          preset = 'enter',
 
+          -- Accept with right arrow when menu is visible
+          ['<Right>'] = { 'accept', 'fallback' },
           -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
           --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
@@ -204,6 +206,18 @@ if not vim.g.vscode then
         --  - ci'  - [C]hange [I]nside [']quote
         require('mini.ai').setup { n_lines = 500 }
 
+        -- all this which key stuff was added by ai and does not work yet
+        -- Register mini.ai keymaps with which-key
+        require('which-key').add({
+          { 'a',  group = 'Around textobject',            mode = { 'o', 'x' } },
+          { 'i',  group = 'Inside textobject',            mode = { 'o', 'x' } },
+          { 'an', desc = 'Around next textobject',        mode = { 'o', 'x' } },
+          { 'in', desc = 'Inside next textobject',        mode = { 'o', 'x' } },
+          { 'al', desc = 'Around last textobject',        mode = { 'o', 'x' } },
+          { 'il', desc = 'Inside last textobject',        mode = { 'o', 'x' } },
+          { 'g[', desc = 'Go to left edge of textobject' },
+          { 'g]', desc = 'Go to right edge of textobject' },
+        })
         -- Add/delete/replace surroundings (brackets, quotes, etc.)
         --
         -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
@@ -211,6 +225,17 @@ if not vim.g.vscode then
         -- - sr)'  - [S]urround [R]eplace [)] [']
         require('mini.surround').setup()
 
+        -- Register surround keymaps with which-key added by ai
+        require('which-key').add({
+          { 's',  group = 'Surround',               mode = { 'n', 'v' } },
+          { 'sa', desc = 'Add surrounding',         mode = { 'n', 'v' } },
+          { 'sd', desc = 'Delete surrounding' },
+          { 'sr', desc = 'Replace surrounding' },
+          { 'sf', desc = 'Find surrounding (right)' },
+          { 'sF', desc = 'Find surrounding (left)' },
+          { 'sh', desc = 'Highlight surrounding' },
+          { 'sn', desc = 'Update search lines' },
+        })
         -- Simple and easy statusline.
         --  You could remove this setup call if you don't like it,
         --  and try some other statusline plugin

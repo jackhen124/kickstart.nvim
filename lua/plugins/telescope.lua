@@ -50,11 +50,20 @@ return {
         --
         defaults = {
           path_display = { 'truncate' },
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
+          --   mappings = {
+          --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+          --   },
         },
-        -- pickers = {}
+        pickers = {
+          -- Default configuration for builtin pickers goes here:
+          buffers = {
+            cwd_only = true,
+            sort_mru = true,
+            --sort_lastused = true,
+          },
+          -- Now the picker_config_key will be applied every time you call this
+          -- builtin picker
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -77,7 +86,8 @@ return {
       vim.keymap.set('n', '<leader>fd', builtin.diagnostics, { desc = '[F]ind [D]iagnostics' })
       vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = '[F]ind [R]esume' })
       vim.keymap.set('n', '<leader>f.', builtin.oldfiles, { desc = '[F]ind Recent Files ("." for repeat)' })
-      -- vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = '[ ] Find Files' })
+      -- -- vim.keymap.set('n', '<leader><leader>', builtin.find_files, { desc = '[ ] Find Files' })
+      -- vim.keymap.set('n', '<leader><Up>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader><Up>', builtin.buffers, { desc = '[ ] Find existing buffers' })
 
       -- Slightly advanced example of overriding default behavior and theme
@@ -102,6 +112,11 @@ return {
       vim.keymap.set('n', '<leader>fn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[F]ind [N]eovim files' })
+
+      -- Search for files in the same directory as current buffer
+      vim.keymap.set('n', '<leader>fe', function()
+        builtin.find_files { cwd = vim.fn.expand '%:p:h' }
+      end, { desc = '[F]ind fil[E]s in current directory' })
     end,
   },
 }
